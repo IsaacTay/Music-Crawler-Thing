@@ -15,7 +15,7 @@ class MusicPipeline(object):
         self.albums = {}
         
     def process_item(self, item, spider):
-        hash_string = item["title"]#hashlib.sha256(item["title"].encode() + item["artist_string"].encode()).hexdigest()
+        hash_string = item["title"].lower()+item["main_artist"].lower()#hashlib.sha256(item["title"].encode() + item["artist_string"].encode()).hexdigest()
         if self.albums.get(hash_string) is not None:
             if item.get("position") is not None:
                 if self.albums[hash_string]["position"] < item["position"]:
